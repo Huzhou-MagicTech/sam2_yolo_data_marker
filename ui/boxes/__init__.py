@@ -19,7 +19,7 @@ modules_to_import = [
     ("ui.boxes.BaseBox", "BaseBox"),
     ("ui.boxes.ConsoleBox", "ConsoleBox"),
     ("ui.boxes.InputConsoleBox", "InputConsoleBox"),
-    ("ui.boxes.DemoBox", "DemoBox"),
+    # ("ui.boxes.DemoBox", "DemoBox"),
 ]
 
 # 尝试导入每个模块，并将其绑定到全局命名空间

@@ -37,6 +37,7 @@ class CanvasCallBack:
         self.mouse_pos = dpg.get_drawing_mouse_pos()
         self.last_mouse_pos = self.mouse_pos
         self.mouse_move_pos = (0, 0)
+        
     def window_resize_callback(self, sender, app_data, user_data):
         width, height, drawlist_tag, drawlist_parent_tag, size_offset = user_data
         parent_width, parent_height = dpg.get_item_rect_size(drawlist_parent_tag)
@@ -70,7 +71,7 @@ class CanvasCallBack:
         canvas_tag, auto_apply, drawlist_tag = user_data
         if not dpg.does_item_exist(drawlist_tag):
             return
-        if not dpg.is_item_focused(drawlist_tag):
+        if not dpg.is_item_hovered(drawlist_tag):
             return
         mouse_x, mouse_y = dpg.get_drawing_mouse_pos()
         tl0, tl1, _ = self._tranform.translation
@@ -90,6 +91,7 @@ class CanvasCallBack:
         self._tranform.transform_matrix = self._tranform.translation_matrix * self._tranform.scale_matrix
         if auto_apply:
             dpg.apply_transform(canvas_tag, self._tranform.transform_matrix)
+    
     def up_date_mouse_pos(self, sender, app_data, user_data):
         self.mouse_pos = dpg.get_drawing_mouse_pos()
         self.last_mouse_pos = self.mouse_pos
@@ -193,6 +195,7 @@ class Canvas2D:
         with dpg.texture_registry():
             texture_id = dpg.add_raw_texture(width=width, height=height,default_value=data,format=dpg.mvFormat_Float_rgba)
         return texture_id
+    
     def texture_update(self,texture_id, image):
         image = image.ravel().astype(np.float32) / 255.0
         dpg.set_value(texture_id, image)

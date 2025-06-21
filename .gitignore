@@ -6,3 +6,10 @@ logs/*
 static/layout/*.json
 *.lprof
 
+datasets/*.jpg
+mark_image/*.jpg
+
+datasets/*.png
+mark_image/*.png
+
+*.pt
